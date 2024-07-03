@@ -1,17 +1,44 @@
-// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
-import "@hotwired/turbo-rails"
-import "./controllers";
+import "@hotwired/turbo-rails";
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 
-window.mountReactComponent = (Component, elementId, props = {}) => {
+// This file is the entry point to the apps javascript
+// This file should import all react components and set up the mounting function
+
+const Components = {
+  Booking,
+};
+
+// Expose the component globally
+import Booking from "./components/Booking";
+
+
+const mountReactComponent = (componentName, elementId, props = {}) => {
   const element = document.getElementById(elementId);
   if (element) {
-    const root = ReactDOM.createRoot(element);
-    root.render(
-      <React.StrictMode>
-        <Component {...props} />
-      </React.StrictMode>
-    );
+    const Component = Components[componentName];
+    if (Component) {
+      const root = ReactDOM.createRoot(element);
+      root.render(
+        <React.StrictMode>
+          <Component {...props} />
+        </React.StrictMode>
+      );
+    } else {
+      console.error(`Component ${componentName} not found`);
+    }
+  } else {
+    console.error(`Element with id ${elementId} not found`);
   }
 };
+
+// Expose mountReactComponent globally
+window.mountReactComponent = mountReactComponent;
+
+// remove at some point
+console.log(
+  "application.js loaded, mountReactComponent:",
+  window.mountReactComponent
+);
+
+export { mountReactComponent, Booking };

@@ -1,0 +1,14 @@
+<h1>Bookings</h1>
+
+<!-- This div will be the container for your React component -->
+<div id="booking-component"></div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    window.mountReactComponent('Booking', 'booking-component', {
+      // You can pass props to your component here
+      initialDate: '<%= Date.today %>',
+      userId: 123456789
+    });
+  });
+</script>
