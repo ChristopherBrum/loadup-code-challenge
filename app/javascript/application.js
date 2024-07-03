@@ -1,17 +1,11 @@
 import "@hotwired/turbo-rails";
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-
-// This file is the entry point to the apps javascript
-// This file should import all react components and set up the mounting function
+import Booking from "./components/Booking";
 
 const Components = {
   Booking,
 };
-
-// Expose the component globally
-import Booking from "./components/Booking";
-
 
 const mountReactComponent = (componentName, elementId, props = {}) => {
   const element = document.getElementById(elementId);
@@ -32,13 +26,6 @@ const mountReactComponent = (componentName, elementId, props = {}) => {
   }
 };
 
-// Expose mountReactComponent globally
 window.mountReactComponent = mountReactComponent;
-
-// remove at some point
-console.log(
-  "application.js loaded, mountReactComponent:",
-  window.mountReactComponent
-);
 
 export { mountReactComponent, Booking };
