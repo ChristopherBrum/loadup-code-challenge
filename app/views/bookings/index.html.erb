@@ -3,6 +3,13 @@
   <%= link_to "New Booking", new_booking_path, class: "btn" %>
 </div>
 
+<% if notice %>
+  <p class="notice"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert"><%= alert %></p>
+<% end %>
+
 <%= content_tag :div, 
     id: "booking-component", 
     data: {

@@ -1,21 +1,31 @@
 class BookingsController < ApplicationController
   include BookingsHelper
+  include PricingEngine
 
   def index
     @bookings = Booking.order(created_at: :desc)
-    p @bookings[0]
   end
   
   def new
     @booking = Booking.new
   end
 
-  def show()
-    @booking = Booking.find(params[:id])
+  def show
+    unless validParamId?(params[:id]) 
+      redirect_to bookings_path, alert: 'Booking ID is invalid.'
+      return
+    end
+
+    begin
+      @booking = Booking.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to bookings_path, alert: 'Booking ID does not exist.'
+    end
   end
+  
 
   def create    
-    price = calculatePrice(booking_params["animal_type"], booking_params["hours_requested"])
+    price = calculate_price(booking_params["animal_type"], booking_params["hours_requested"])
     
     @booking = Booking.new(booking_params)
     @booking.price = price
