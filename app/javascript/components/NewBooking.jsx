@@ -1,35 +1,63 @@
-import React from 'react'
+import React from "react";
 
 const NewBooking = () => {
   return (
-		<>
-			<h2>New Booking Form</h2>
-			<form action="/bookings" method="POST">
-			<label htmlFor="first_name">Your First Name:</label>
-			<input type="text" id="first_name" name="first_name" required />
+    <div className="new-booking-container" id="darkModeForm">
+			<input type="hidden" name="authenticity_token" value={document.querySelector('meta[name="csrf-token"]').content} />
 
-			<label htmlFor="last_name">Your Last Name:</label>
-			<input type="text" id="last_name" name="last_name" required />
+      <form action="/bookings" method="POST">
+        <div className="form-group">
+          <label htmlFor="first_name">Your First Name:</label>
+          <input type="text" id="first_name" name="booking[first_name]" required />
+        </div>
 
-			<label htmlFor="animal_name">Animal's Name:</label>
-			<input type="text" id="animal_name" name="animal_name" required />
+        <div className="form-group">
+          <label htmlFor="last_name">Your Last Name:</label>
+          <input type="text" id="last_name" name="booking[last_name]" required />
+        </div>
 
-			<label htmlFor="animal_type">Animal Type:</label>
-			<select id="animal_type" name="animal_type" required>
-					<option value="Dog">Dog</option>
-					<option value="Cat">Cat</option>
-			</select>
+        <div className="form-group">
+          <label htmlFor="animal_name">Animal's Name:</label>
+          <input type="text" id="animal_name" name="booking[animal_name]" required />
+        </div>
 
-			<label htmlFor="hours_requested">Hours Requested (2-8):</label>
-			<input type="number" id="hours_requested" name="hours_requested" min="2" max="8" required />
+        <div className="form-group">
+          <label htmlFor="animal_type">Animal Type:</label>
+          <select id="animal_type" name="booking[animal_type]" required>
+            <option value="">Select animal type</option>
+            <option value="Dog">Dog</option>
+            <option value="Cat">Cat</option>
+          </select>
+        </div>
 
-			<label htmlFor="date_of_service">Date of Service:</label>
-			<input type="date" id="date_of_service" name="date_of_service" required />
+        <div className="form-group">
+          <label htmlFor="hours_requested">Hours Requested (2-8):</label>
+          <input
+            type="number"
+            id="hours_requested"
+            name="booking[hours_requested]"
+            min="2"
+            max="8"
+            required
+          />
+        </div>
 
-			<input type="submit" value="Submit Booking" />
-		</form>
-		</>
-  )
-}
+        <div className="form-group">
+          <label htmlFor="date_of_service">Date of Service:</label>
+          <input
+            type="date"
+            id="date_of_service"
+            name="booking[date_of_service]"
+            required
+          />
+        </div>
 
-export default NewBooking
+        <div className="form-group">
+          <input type="submit" value="Submit Booking" className="submit-btn" />
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default NewBooking;

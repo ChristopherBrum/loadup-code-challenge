@@ -1,33 +1,5 @@
-<%
-=begin%>
- <div id="nav-wrapper" >
-  <h1>Admin Portal - Bookings</h1>
-  <p><%= link_to "New Booking", new_booking_path, class: "btn" %></p>
-</div>
-
-<div id="booking-component"></div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    window.mountReactComponent('Booking', 'booking-component', {
-      bookings: <%= @bookings.map { |b| {
-          first_name: b.first_name,
-          last_name: b.last_name,
-          animal_name: b.animal_name,
-          animal_type: b.animal_type,
-          hours_requested: b.hours_requested,
-          date_of_service: b.date_of_service,
-          price: b.price,
-        }
-      }.to_json.html_safe %>
-    });
-  });
-</script> 
-<%
-=end%>
-
 <div id="nav-wrapper">
-  <h1>Admin Portal - Bookings</h1>
+  <h1>All Bookings</h1>
   <p><%= link_to "New Booking", new_booking_path, class: "btn" %></p>
 </div>
 
@@ -35,6 +7,7 @@
     id: "booking-component", 
     data: {
       bookings: @bookings.map { |b| {
+        id: b.id,
         first_name: b.first_name,
         last_name: b.last_name,
         animal_name: b.animal_name,

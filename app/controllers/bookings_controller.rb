@@ -1,8 +1,9 @@
 class BookingsController < ApplicationController
-  # include BookingsHelper
+  include BookingsHelper
 
   def index
     @bookings = Booking.order(created_at: :desc)
+    p @bookings[0]
   end
   
   def new
@@ -20,9 +21,23 @@ class BookingsController < ApplicationController
     @booking.price = price
 
     if @booking.save
-      redirect_to @booking
+      redirect_to bookings_path, notice: 'Booking was successfully created.'
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+
+    p "------------"
+    p params
+    p "------------"
+
+    if @booking.destroy
+      redirect_to bookings_path, notice: 'Booking was successfully deleted.'
+    else 
+      redirect_to bookings_path, alert: 'Failed to delete booking.'
     end
   end
 

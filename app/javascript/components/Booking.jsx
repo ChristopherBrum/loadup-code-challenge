@@ -3,9 +3,11 @@ import React from "react";
 const Booking = ({ bookings }) => {
   const bookingsArray = bookings ? JSON.parse(bookings) : [];
 
-  if (bookingsArray.length === 0) {
+  if (!bookings || bookings.length === 0) {
     return <p>No bookings available.</p>;
   }
+
+  console.log(bookings);
 
   return (
     <div className="booking-table-container" id="darkModeTable">
@@ -17,15 +19,16 @@ const Booking = ({ bookings }) => {
             <th className="header-cell">Animal Type</th>
             <th className="header-cell">Hours Requested</th>
             <th className="header-cell">Date of Service</th>
-            <th className="header-cell">Price</th>
+            <th className="header-cell">Total Price</th>
+            <th className="header-cell">Delete</th>
           </tr>
         </thead>
         <tbody>
-          {bookingsArray.map((booking, index) => (
+          {bookingsArray.map((booking) => (
             <tr
-              key={index}
+              key={booking.id}
               className={`table-row ${
-                index % 2 === 0 ? "even-row" : "odd-row"
+                booking.id % 2 === 0 ? "even-row" : "odd-row"
               }`}
             >
               <td className="table-cell">{`${booking.first_name} ${booking.last_name}`}</td>
@@ -38,6 +41,34 @@ const Booking = ({ bookings }) => {
               <td className="table-cell price-cell">
                 ${parseFloat(booking.price).toFixed(2)}
               </td>
+              <td className="table-cell">
+                <form
+                  action={`/bookings/${booking.id}`}
+                  method="post"
+                  onSubmit={(e) => {
+                    if (
+                      !window.confirm(
+                        "Are you sure you want to delete this booking?"
+                      )
+                    ) {
+                      e.preventDefault();
+                    }
+                  }}
+                >
+                  <input type="hidden" name="_method" value="delete" />
+                  <input
+                    type="hidden"
+                    name="authenticity_token"
+                    value={
+                      document.querySelector('meta[name="csrf-token"]').content
+                    }
+                  />
+                  <button type="submit" className="delete-btn">
+                    Delete
+                  </button>
+                </form>
+              </td>
+              <td>{booking.id}</td>
             </tr>
           ))}
         </tbody>

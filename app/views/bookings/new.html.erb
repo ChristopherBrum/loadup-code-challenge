@@ -1,7 +1,17 @@
 <div id="nav-wrapper" >
-  <h1>Create New Bookings</h1>
+  <h1>Create a New Booking</h1>
   <p><%= link_to "All Bookings", bookings_path, class: "btn" %></p>
 </div>
 
+<%
+=begin%>
+ <% if notice %>
+  <p class="notice"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert"><%= alert %></p>
+<% end %> 
+<%
+=end%>
 
 <div id="new-booking-component" data-controller="react-new-booking"></div>
