@@ -1,31 +1,47 @@
-import "@hotwired/turbo-rails";
-import * as React from "react";
-import * as ReactDOM from "react-dom/client";
-import Booking from "./components/Booking";
+import "@hotwired/turbo-rails"
+import "./controllers"
+import * as React from "react"
+import * as ReactDOM from "react-dom/client"
+import Booking from "./components/Booking"
+import NewBooking from "./components/NewBooking"
 
 const Components = {
   Booking,
-};
+  NewBooking
+}
 
 const mountReactComponent = (componentName, elementId, props = {}) => {
-  const element = document.getElementById(elementId);
+  const element = document.getElementById(elementId)
   if (element) {
-    const Component = Components[componentName];
+    const Component = Components[componentName]
     if (Component) {
-      const root = ReactDOM.createRoot(element);
+      const root = ReactDOM.createRoot(element)
       root.render(
         <React.StrictMode>
           <Component {...props} />
         </React.StrictMode>
-      );
+      )
     } else {
-      console.error(`Component ${componentName} not found`);
+      console.error(`Component ${componentName} not found`)
     }
   } else {
-    console.error(`Element with id ${elementId} not found`);
+    console.error(`Element with id ${elementId} not found`)
   }
-};
+}
 
-window.mountReactComponent = mountReactComponent;
+document.addEventListener("turbo:load", () => {
+  const bookingElement = document.getElementById("booking-component")
+  if (bookingElement) {
+    const bookingsData = bookingElement.dataset.bookings
+    mountReactComponent("Booking", "booking-component", { bookings: bookingsData })
+  }
 
-export { mountReactComponent, Booking };
+  const newBookingElement = document.getElementById("new-booking-component")
+  if (newBookingElement) {
+    mountReactComponent("NewBooking", "new-booking-component")
+  }
+})
+
+window.mountReactComponent = mountReactComponent
+
+export { mountReactComponent, Booking, NewBooking }

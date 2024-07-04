@@ -1,6 +1,10 @@
-<h1>Bookings</h1>
+<%
+=begin%>
+ <div id="nav-wrapper" >
+  <h1>Admin Portal - Bookings</h1>
+  <p><%= link_to "New Booking", new_booking_path, class: "btn" %></p>
+</div>
 
-<!-- This div will be the container for your React component -->
 <div id="booking-component"></div>
 
 <script>
@@ -18,4 +22,27 @@
       }.to_json.html_safe %>
     });
   });
-</script>
+</script> 
+<%
+=end%>
+
+<div id="nav-wrapper">
+  <h1>Admin Portal - Bookings</h1>
+  <p><%= link_to "New Booking", new_booking_path, class: "btn" %></p>
+</div>
+
+<%= content_tag :div, 
+    id: "booking-component", 
+    data: {
+      bookings: @bookings.map { |b| {
+        first_name: b.first_name,
+        last_name: b.last_name,
+        animal_name: b.animal_name,
+        animal_type: b.animal_type,
+        hours_requested: b.hours_requested,
+        date_of_service: b.date_of_service,
+        price: b.price
+      }}
+    } do %>
+<% end %>
+
