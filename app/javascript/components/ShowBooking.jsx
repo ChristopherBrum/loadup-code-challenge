@@ -11,6 +11,12 @@ const ShowBooking = ({ booking }) => {
     }
   };
 
+  const formatDate = (booking) => {
+    const date = new Date(booking.date_of_service);
+    date.setDate(date.getDate() + 1); // Increment the day by 1
+    return date.toLocaleDateString();
+  };
+
   return (
     <div className="show-booking-detail-container" id="darkModeDetailTable">
       <table className="show-booking-detail-table">
@@ -35,9 +41,7 @@ const ShowBooking = ({ booking }) => {
           </tr>
           <tr className="show-booking-detail-row">
             <th className="show-booking-detail-label">Date of Service</th>
-            <td className="show-booking-detail-value">
-              {new Date(booking.date_of_service).toLocaleDateString()}
-            </td>
+            <td className="show-booking-detail-value">{formatDate(booking)}</td>
           </tr>
           <tr className="show-booking-detail-row">
             <th className="show-booking-detail-label">Total Price</th>

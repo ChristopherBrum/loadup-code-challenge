@@ -13,6 +13,12 @@ const Booking = ({ bookings }) => {
     }
   };
 
+  const formatDate = (booking) => {
+    const date = new Date(booking.date_of_service);
+    date.setDate(date.getDate() + 1); // Increment the day by 1
+    return date.toLocaleDateString();
+  };
+
   return (
     <div className="booking-table-container" id="darkModeTable">
       <table className="booking-table">
@@ -39,9 +45,7 @@ const Booking = ({ bookings }) => {
               <td className="table-cell">{booking.animal_name}</td>
               <td className="table-cell">{booking.animal_type}</td>
               <td className="table-cell">{booking.hours_requested}</td>
-              <td className="table-cell">
-                {new Date(booking.date_of_service).toLocaleDateString()}
-              </td>
+              <td className="table-cell">{formatDate(booking)}</td>
               <td className="table-cell price-cell">
                 ${parseFloat(booking.price).toFixed(2)}
               </td>

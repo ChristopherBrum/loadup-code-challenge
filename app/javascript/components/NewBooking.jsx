@@ -46,6 +46,7 @@ const NewBooking = () => {
     if (!dateOfService) {
       return displayMessage("Date of service is required");
     } else {
+      console.log("dateOfService:", dateOfService);
       const selectedDate = new Date(dateOfService);
       const today = new Date();
       if (selectedDate < today) {
