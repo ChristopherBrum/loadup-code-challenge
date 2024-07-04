@@ -21,21 +21,20 @@ class BookingsController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       redirect_to bookings_path, alert: 'Booking ID does not exist.'
     end
-  end
-  
+  end  
 
-  def create    
+  def create
     price = calculate_price(booking_params["animal_type"], booking_params["hours_requested"])
     
     @booking = Booking.new(booking_params)
     @booking.price = price
-
+  
     if @booking.save
       redirect_to booking_path(@booking), notice: 'Booking was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
-  end
+  end  
 
   def destroy
     @booking = Booking.find(params[:id])

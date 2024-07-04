@@ -1,5 +1,6 @@
 module BookingsHelper
 	def validParamId?(id)
-		id.to_i.to_s == id && id.to_i > 0
+		return false unless id.is_a?(String)
+    id.match?(/\A[1-9]\d*\z/)
 	end
 end
