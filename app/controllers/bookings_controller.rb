@@ -21,7 +21,7 @@ class BookingsController < ApplicationController
     @booking.price = price
 
     if @booking.save
-      redirect_to bookings_path, notice: 'Booking was successfully created.'
+      redirect_to booking_path(@booking), notice: 'Booking was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,10 +29,6 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking = Booking.find(params[:id])
-
-    p "------------"
-    p params
-    p "------------"
 
     if @booking.destroy
       redirect_to bookings_path, notice: 'Booking was successfully deleted.'

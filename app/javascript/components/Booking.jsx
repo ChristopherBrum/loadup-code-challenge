@@ -7,7 +7,11 @@ const Booking = ({ bookings }) => {
     return <p>No bookings available.</p>;
   }
 
-  console.log(bookings);
+  const handleDeleteBooking = (e) => {
+    if (!window.confirm("Are you sure you want to delete this booking?")) {
+      e.preventDefault();
+    }
+  };
 
   return (
     <div className="booking-table-container" id="darkModeTable">
@@ -45,15 +49,7 @@ const Booking = ({ bookings }) => {
                 <form
                   action={`/bookings/${booking.id}`}
                   method="post"
-                  onSubmit={(e) => {
-                    if (
-                      !window.confirm(
-                        "Are you sure you want to delete this booking?"
-                      )
-                    ) {
-                      e.preventDefault();
-                    }
-                  }}
+                  onSubmit={handleDeleteBooking}
                 >
                   <input type="hidden" name="_method" value="delete" />
                   <input
@@ -68,7 +64,6 @@ const Booking = ({ bookings }) => {
                   </button>
                 </form>
               </td>
-              <td>{booking.id}</td>
             </tr>
           ))}
         </tbody>

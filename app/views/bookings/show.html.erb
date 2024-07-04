@@ -1,0 +1,23 @@
+<div id="nav-wrapper">
+  <h1>Your Pet Sitter Booking</h1>
+	<div>
+		<%= link_to "New Booking", new_booking_path, class: "btn" %>
+		<%= link_to "All Bookings", bookings_path, class: "btn" %>
+	</div>
+</div>
+
+<%= content_tag :div, 
+    id: "show-booking-component", 
+    data: {
+      booking: {
+        id: @booking.id,
+        first_name: @booking.first_name,
+        last_name: @booking.last_name,
+        animal_name: @booking.animal_name,
+        animal_type: @booking.animal_type,
+        hours_requested: @booking.hours_requested,
+        date_of_service: @booking.date_of_service,
+        price: @booking.price
+      }
+    } do %>
+<% end %>

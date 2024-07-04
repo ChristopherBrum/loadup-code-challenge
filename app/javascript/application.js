@@ -4,10 +4,12 @@ import * as React from "react"
 import * as ReactDOM from "react-dom/client"
 import Booking from "./components/Booking"
 import NewBooking from "./components/NewBooking"
+import ShowBooking from "./components/ShowBooking"
 
 const Components = {
   Booking,
-  NewBooking
+  NewBooking,
+  ShowBooking
 }
 
 const mountReactComponent = (componentName, elementId, props = {}) => {
@@ -40,8 +42,14 @@ document.addEventListener("turbo:load", () => {
   if (newBookingElement) {
     mountReactComponent("NewBooking", "new-booking-component")
   }
+
+  const showBookingElement = document.getElementById("show-booking-component")
+  if (showBookingElement) {
+    const bookingData = JSON.parse(showBookingElement.dataset.booking)
+    mountReactComponent("ShowBooking", "show-booking-component", { booking: bookingData })
+  }
 })
 
 window.mountReactComponent = mountReactComponent
 
-export { mountReactComponent, Booking, NewBooking }
+export { mountReactComponent, Booking, NewBooking, ShowBooking }
