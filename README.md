@@ -15,8 +15,8 @@
 1. **Clone the repository**:
 
    ```sh
-   git clone https://github.com/yourusername/loadup-pet-sitting.git
-   cd loadup-pet-sitting
+   git clone https://github.com/ChristopherBrum/loadup-code-challenge.git
+   cd loadup-code-challenge
    ```
 
 2. **Install Ruby dependencies**:
@@ -36,15 +36,22 @@
    ```sh
    rails db:create
    rails db:migrate
+	 rails db:seed
    ```
 
-5. **Start the Rails server**:
+5. **Build the project**:
+
+   ```sh
+   npm run build
+   ```
+
+6. **Start the Rails server**:
 
    ```sh
    rails server
    ```
 
-6. **Visit the application**:
+7. **Visit the application**:
 
    Open your web browser and navigate to `http://localhost:3000`.
 
@@ -68,29 +75,18 @@ To run the end-to-end tests, use the following command:
 bundle exec rspec spec/features/booking_spec.rb
 ```
 
-**Note**: During the development of the end-to-end tests, there were challenges in getting the React components to render properly in the test environment. The main issues were related to timing and visibility of the components. Despite these challenges, the tests should provide a good starting point for verifying the functionality of the booking form and admin pages.
-
-### Pricing Engine
-
-The pricing engine calculates the cost of the pet sitting service based on the following rules:
-
-- Base charge: $20
-- Additional charge per hour for dogs: $10
-- Additional charge per hour for cats: $5
+**Note**: During the development of the end-to-end tests, there were challenges in getting the React components to render properly in the test environment. The main issues were related to timing and visibility of the components. Despite these challenges, the tests should provide a good starting point for verifying the functionality of the booking form and admin pages. I'll be continuing to debug these tests in the coming days. 
 
 ### Future Improvements
 
-Given more time, the following improvements could be made:
+Given more time, the following I'd like to implement these improvements:
 
+- **Pagination**: Add pagination to the admin's list of all bookings.
+- **Authentication**: I'd like to add authentication allowing users to sign in and view their own personal bookings in isolation.
 - **Improved Error Handling**: Enhance the form validation and error messages.
-- **Styling**: Add more styling to the booking form and admin pages for a better user experience.
 - **Deployment**: Deploy the application to a cloud service (e.g., Heroku) for easier access and demonstration.
 - **Additional Tests**: Add more comprehensive tests for edge cases and error scenarios.
 
 ## Conclusion
 
 Thank you for taking the time to review this application. If you have any questions or need further assistance, please feel free to reach out.
-
----
-
-Feel free to customize the repository URL and any other details specific to your application. This `README.md` should provide clear instructions for setting up and running the application, as well as context about the testing challenges encountered.
