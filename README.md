@@ -95,4 +95,4 @@ Given more time, the following I'd like to implement these improvements:
 
 ## Conclusion
 
-Thank you for taking the time to review this application. If you have any questions or need further assistance, please feel free to reach out.
+Thank you for taking the time to review this code challenge. It was fun and challenging at times!
