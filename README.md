@@ -6,50 +6,50 @@
 
 - Ruby (version 3.2.2)
 - Rails (version 7.1)
-- Node.js and npm (for JavaScript dependencies)
-- PostgreSQL (or another database supported by Rails)
-- Firefox (for running end-to-end tests)
+- Node.js (v20.2.0)
+- npm(v9.6.6)
+- PostgreSQL
 
 ### Installation
 
 1. **Clone the repository**:
 
-   ```sh
-   git clone https://github.com/ChristopherBrum/loadup-code-challenge.git
-   cd loadup-code-challenge
-   ```
+```sh
+git clone https://github.com/ChristopherBrum/loadup-code-challenge.git
+cd loadup-code-challenge
+```
 
 2. **Install Ruby dependencies**:
 
-   ```sh
-   bundle install
-   ```
+```sh
+bundle install
+```
 
 3. **Install JavaScript dependencies**:
 
-   ```sh
-   npm install
-   ```
+```sh
+npm install
+```
 
 4. **Set up the database**:
 
-   ```sh
-   rails db:create
-   rails db:migrate
-	 rails db:seed
-   ```
+```sh
+rails db:create
+rails db:migrate
+rails db:seed
+```
 
 5. **Build the project**:
 
-   ```sh
-   npm run build
-   ```
+```sh
+npm run build
+```
 
 6. **Start the Rails server**:
 
-   ```sh
-   rails server
-   ```
+```sh
+rails s
+```
 
 7. **Visit the application**:
 
@@ -57,9 +57,15 @@
 
 ### Running Tests
 
+For the test environment, you need to set up the test database as well:
+
+```sh
+rails db:test:prepare
+```
+
 #### Unit Tests
 
-Unit tests are provided for the pricing engine. To run the unit tests, use the following command:
+Unit tests are provided for the model, controller, pricing engine, and helpers. To run the unit tests, use the following command:
 
 ```sh
 bundle exec rspec spec/helpers spec/models spec/controllers
