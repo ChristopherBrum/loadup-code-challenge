@@ -13,7 +13,7 @@ const ShowBooking = ({ booking }) => {
 
   const formatDate = (booking) => {
     const date = new Date(booking.date_of_service);
-    date.setDate(date.getDate() + 1); // Increment the day by 1
+    date.setDate(date.getDate() + 1);
     return date.toLocaleDateString();
   };
 

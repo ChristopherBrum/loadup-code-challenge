@@ -7,7 +7,7 @@ const NewBooking = () => {
   const [animalType, setAnimalType] = useState("");
   const [hoursRequested, setHoursRequested] = useState("");
   const [dateOfService, setDateOfService] = useState("");
-
+  
   const displayMessage = (message) => {
     if (!message) return null;
 
@@ -16,7 +16,7 @@ const NewBooking = () => {
 
     setTimeout(() => {
       element.innerHTML = "";
-    }, 5000)
+    }, 5000);
 
     return null;
   };
@@ -35,7 +35,7 @@ const NewBooking = () => {
     }
 
     if (animalType !== "Dog" && animalType !== "Cat") {
-      console.log(animalType)
+      console.log(animalType);
       return displayMessage("Please select an animal type");
     }
 
@@ -64,7 +64,11 @@ const NewBooking = () => {
   };
 
   return (
-    <div className="new-booking-container" id="darkModeForm">
+    <div
+      className="new-booking-container react-component-loaded"
+      style={{minHeight: '100px'}}
+      id="darkModeForm"
+    >
       {/* prevents cross-site request forgery attacks */}
       <input
         type="hidden"

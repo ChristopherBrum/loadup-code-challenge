@@ -13,6 +13,7 @@ const Components = {
 }
 
 const mountReactComponent = (componentName, elementId, props = {}) => {
+  console.log(`Attempting to mount ${componentName} on element with id ${elementId}`)
   const element = document.getElementById(elementId)
   if (element) {
     const Component = Components[componentName]
@@ -23,6 +24,7 @@ const mountReactComponent = (componentName, elementId, props = {}) => {
           <Component {...props} />
         </React.StrictMode>
       )
+      console.log(`Successfully mounted ${componentName}`)
     } else {
       console.error(`Component ${componentName} not found`)
     }
@@ -32,6 +34,8 @@ const mountReactComponent = (componentName, elementId, props = {}) => {
 }
 
 document.addEventListener("turbo:load", () => {
+  console.log("Turbo load event fired")
+  
   const bookingElement = document.getElementById("booking-component")
   if (bookingElement) {
     const bookingsData = bookingElement.dataset.bookings
