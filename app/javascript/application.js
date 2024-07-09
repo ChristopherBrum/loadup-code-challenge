@@ -36,8 +36,6 @@ const mountReactComponent = (componentName, elementId, props = {}) => {
 };
 
 document.addEventListener("turbo:load", () => {
-  console.log("Turbo load event fired");
-
   const bookingElement = document.getElementById("booking-component");
   if (bookingElement) {
     const bookingsData = bookingElement.dataset.bookings;
